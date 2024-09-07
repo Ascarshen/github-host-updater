@@ -2,9 +2,8 @@ name: Update Readme with IP Addresses
 
 on:
   schedule:
-    # 使用cron表达式每天定时触发，比如每天的UTC时间0点触发
-    - cron: "0 0 * * *"
-  workflow_dispatch: # 允许手动触发
+    - cron: "0 0 * * *"  # 每天定时触发
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   update-readme:
@@ -50,5 +49,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
           git commit -m "Update README with latest IP addresses"
-          git pull --rebase  # 拉取最新更改并合并
-          git push --force  
+          git push --force  # 强制推送
