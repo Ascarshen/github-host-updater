@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
+      # Checkout the repository with full history
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 完整克隆历史
 
       # Set up Python
       - name: Set up Python
@@ -48,5 +50,5 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
           git commit -m "Update README with latest IP addresses"
-          git pull --rebase  # 先拉取远程更改并应用rebase
+          git pull --rebase  # 拉取最新更改并合并
           git push
