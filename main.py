@@ -12,8 +12,6 @@ def process_url(url):
 if __name__ == "__main__":
 
     with open("output.txt", "w") as f:
-        f.write("# GitHub URLs and Their IP Addresses\n")
-        f.write(f"Updated on {__import__('datetime').datetime.now()}\n\n")
 
         f.write("```bash\n")
 
