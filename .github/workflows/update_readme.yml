@@ -50,55 +50,5 @@ jobs:
           git add README.md
           git commit -m "Update README with latest IP addresses"
           git push
-name: Update Readme with IP Addresses
-
-on:
-  schedule:
-    # 使用cron表达式每天定时触发，比如每天的UTC时间0点触发
-    - cron: "0 0 * * *"
-  workflow_dispatch: # 允许手动触发
-
-jobs:
-  update-readme:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          node-version: '20'  # 强制使用 node 20
-
-      # Set up Python
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          node-version: '20'  # 强制使用 node 20
-          python-version: '3.x'
-
-      # Install dependencies
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      # Run the script and capture output
-      - name: Run the script
-        run: |
-          python main.py
-
-      # Update README with the IP addresses
-      - name: Update README.md
-        run: |
-          echo "# GitHub URLs and Their IP Addresses" > README.md
-          echo "Updated on $(date)" >> README.md
-          echo "" >> README.md
-          cat output.txt >> README.md
-
-      # Commit and push the changes
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Update README with latest IP addresses"
-          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
