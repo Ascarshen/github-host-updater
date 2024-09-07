@@ -51,4 +51,4 @@ jobs:
           git add README.md
           git commit -m "Update README with latest IP addresses"
           git pull --rebase  # 拉取最新更改并合并
-          git push
+          git push --force  
